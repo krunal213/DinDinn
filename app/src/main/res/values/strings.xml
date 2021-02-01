@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">DinDinn</string>
+    <string name="tab_text_1">Pizza</string>
+    <string name="tab_text_2">Sushi</string>
+    <string name="tab_text_3">Drinks</string>
+
+    <string name="tab_Cart">Cart</string>
+    <string name="tab_Order">Order</string>
+    <string name="tab_Information">Info</string>
+
+    <string name="title_activity_main">MainActivity</string>
+</resources>
