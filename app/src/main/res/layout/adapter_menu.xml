@@ -23,7 +23,8 @@
                 android:layout_width="match_parent"
                 android:scaleType="centerCrop"
                 app:layout_constraintTop_toTopOf="parent"
-                imageUrl="@{menu.imageUrl}"/>
+                imageUrl="@{menu.imageUrl}"
+                />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guidelineLeft"

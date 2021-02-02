@@ -1,6 +1,5 @@
 package com.app.dindinn.view.fragment
 
-import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
@@ -8,13 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
 import com.airbnb.mvrx.withState
+import com.app.dindinn.R
 import com.app.dindinn.databinding.FragmentHomeBinding
-import com.app.dindinn.view.activity.MenuActivity
 import com.app.dindinn.view.adapter.SectionsPagerAdapter
 import com.app.dindinn.view.adapter.OffersAdapter
 import com.app.dindinn.viewmodel.OfferViewModel
@@ -22,11 +22,19 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
+import com.google.android.material.transition.MaterialSharedAxis
 
 class HomeFragment : Fragment(), MavericksView, AppBarLayout.OnOffsetChangedListener {
 
     private lateinit var fragmentHomeBinding : FragmentHomeBinding
     private val offerViewModel: OfferViewModel by activityViewModel()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        exitTransition = MaterialSharedAxis(MaterialSharedAxis.Y,true).apply {
+            duration = 500
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,7 +68,9 @@ class HomeFragment : Fragment(), MavericksView, AppBarLayout.OnOffsetChangedList
         fragmentHomeBinding.appBar.addOnOffsetChangedListener(this)
 
         fragmentHomeBinding.floatingActionButton.setOnClickListener {
-            startActivity(Intent(this.activity,MenuActivity::class.java))
+            //startActivity(Intent(this.activity,MenuActivity::class.java))
+                v: View? ->
+            v?.findNavController()?.navigate(R.id.action_homeFragment_to_menuFragment)
         }
 
         return fragmentHomeBinding.root

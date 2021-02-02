@@ -1,5 +1,6 @@
 package com.app.dindinn.bindingAdapters
 
+import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.ListAdapter
@@ -20,7 +21,6 @@ fun loadImage(view: AppCompatImageView, imageUrl : String?) {
     try {
         Glide.with(view.context)
             .load(imageUrl)
-            .skipMemoryCache( true )
             .into(view)
     }catch (ex : Exception){
         ex.printStackTrace()
