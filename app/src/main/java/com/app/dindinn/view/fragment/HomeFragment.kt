@@ -68,7 +68,6 @@ class HomeFragment : Fragment(), MavericksView, AppBarLayout.OnOffsetChangedList
         fragmentHomeBinding.appBar.addOnOffsetChangedListener(this)
 
         fragmentHomeBinding.floatingActionButton.setOnClickListener {
-            //startActivity(Intent(this.activity,MenuActivity::class.java))
                 v: View? ->
             v?.findNavController()?.navigate(R.id.action_homeFragment_to_menuFragment)
         }
@@ -81,6 +80,15 @@ class HomeFragment : Fragment(), MavericksView, AppBarLayout.OnOffsetChangedList
     }
 
     override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
+        println("VerticalOffset : "+verticalOffset)
+        if(verticalOffset<0){
+            when(fragmentHomeBinding.floatingActionButton.visibility){
+                View.GONE->{
+                    fragmentHomeBinding.floatingActionButton.visibility = View.VISIBLE
+                }
+            }
+        }
+
     }
 
 

@@ -83,10 +83,10 @@
             android:id="@+id/floatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
             android:src="@drawable/ic_shopping_cart"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"/>
+            android:layout_margin="16dp"
+            android:visibility="gone"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
