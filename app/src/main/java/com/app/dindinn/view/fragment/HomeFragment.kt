@@ -26,12 +26,12 @@ import com.google.android.material.transition.MaterialSharedAxis
 
 class HomeFragment : Fragment(), MavericksView, AppBarLayout.OnOffsetChangedListener {
 
-    private lateinit var fragmentHomeBinding : FragmentHomeBinding
+    private lateinit var fragmentHomeBinding: FragmentHomeBinding
     private val offerViewModel: OfferViewModel by activityViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        exitTransition = MaterialSharedAxis(MaterialSharedAxis.Y,true).apply {
+        exitTransition = MaterialSharedAxis(MaterialSharedAxis.Y, true).apply {
             duration = 500
         }
     }
@@ -45,7 +45,8 @@ class HomeFragment : Fragment(), MavericksView, AppBarLayout.OnOffsetChangedList
         fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false)
         fragmentHomeBinding.recyclerview.adapter =
             OffersAdapter()
-        fragmentHomeBinding.recyclerview.layoutManager = LinearLayoutManager(this.requireContext(), LinearLayoutManager.HORIZONTAL,false)
+        fragmentHomeBinding.recyclerview.layoutManager =
+            LinearLayoutManager(this.requireContext(), LinearLayoutManager.HORIZONTAL, false)
         var pagerSnapHelper = PagerSnapHelper()
         pagerSnapHelper.attachToRecyclerView(fragmentHomeBinding.recyclerview)
         fragmentHomeBinding.indicator.attachToRecyclerView(fragmentHomeBinding.recyclerview)
@@ -56,9 +57,9 @@ class HomeFragment : Fragment(), MavericksView, AppBarLayout.OnOffsetChangedList
                 childFragmentManager
             )
 
-        var shapeAppearanceModel : ShapeAppearanceModel = ShapeAppearanceModel.builder()
-            .setTopLeftCorner(CornerFamily.ROUNDED,100f)
-            .setTopRightCorner(CornerFamily.ROUNDED,100f)
+        var shapeAppearanceModel: ShapeAppearanceModel = ShapeAppearanceModel.builder()
+            .setTopLeftCorner(CornerFamily.ROUNDED, 100f)
+            .setTopRightCorner(CornerFamily.ROUNDED, 100f)
             .build()
         var materialShapeDrawable = MaterialShapeDrawable(shapeAppearanceModel)
         materialShapeDrawable.fillColor = ColorStateList.valueOf(Color.WHITE)
@@ -67,10 +68,18 @@ class HomeFragment : Fragment(), MavericksView, AppBarLayout.OnOffsetChangedList
 
         fragmentHomeBinding.appBar.addOnOffsetChangedListener(this)
 
-        fragmentHomeBinding.floatingActionButton.setOnClickListener {
-                v: View? ->
+        fragmentHomeBinding.floatingActionButton.setOnClickListener { v: View? ->
             v?.findNavController()?.navigate(R.id.action_homeFragment_to_menuFragment)
         }
+
+        /*fragmentHomeBinding.contentView.apply {
+            alpha = 0f
+            visibility = View.VISIBLE
+            animate()
+                .alpha(1f)
+                .setDuration(2000)
+                .setListener(null)
+        }*/
 
         return fragmentHomeBinding.root
     }
@@ -80,10 +89,9 @@ class HomeFragment : Fragment(), MavericksView, AppBarLayout.OnOffsetChangedList
     }
 
     override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
-        println("VerticalOffset : "+verticalOffset)
-        if(verticalOffset<0){
-            when(fragmentHomeBinding.floatingActionButton.visibility){
-                View.GONE->{
+        if (verticalOffset < 0) {
+            when (fragmentHomeBinding.floatingActionButton.visibility) {
+                View.GONE -> {
                     fragmentHomeBinding.floatingActionButton.visibility = View.VISIBLE
                 }
             }
