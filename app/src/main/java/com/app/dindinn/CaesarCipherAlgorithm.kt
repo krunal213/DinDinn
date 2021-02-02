@@ -70,9 +70,3 @@ object CaesarCipherAlgorithm {
 }
 
 
-
-//b/ What is the disadvantage of using the ASCII value of the letters to solve this problem?
-//above code work for 26 letters only so always indexing 1 to 26
-//difficult to perform operation like this val newAlphabetPosition: Long = (originalAlphabetPosition + offset) % 26
-//not possible to find out index ex : x y z then 'a', how to reach again to 'a' it is difficult because any number having their own char
-//code like this ex :  var c = 1000000 println(c.toChar())
